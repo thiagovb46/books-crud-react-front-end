@@ -31,7 +31,7 @@ export default function Login(){
             localStorage.setItem('acessToken', response.data.acessToken)
             localStorage.setItem('refreshToken', response.data.refreshToken)
 
-            history.push('/books');
+            history.push('/book');
 
         }
         catch(error){
