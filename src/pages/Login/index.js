@@ -1,6 +1,6 @@
 import React from "react";
 
-import './style.css'
+import './styles.css'
 
 import '../../global.css';
 import padlockImage from '../../assets/padlock.png'
