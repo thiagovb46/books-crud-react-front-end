@@ -19,6 +19,10 @@ export default function Book()
 
 
     useEffect(()=>{
+        if(acessToken==null){
+            alert("Your'e NOT Logged")
+            history.push('/')
+        }
         api.get('api/book/v1', {
             headers:{
                 Authorization: `Bearer ${acessToken}`
@@ -29,6 +33,22 @@ export default function Book()
            
         });
     }, [acessToken])
+
+    async function logout(){
+        try{
+            await api.get('api/auth/v1/revoke',{
+                headers:{
+                    Authorization: `Bearer ${acessToken}`
+                }
+            });
+            localStorage.clear();
+            history.push('/');
+        }
+        catch(error){
+            alert("Logout Failed");
+
+        }
+    }
 
     async function deleteBook(id){
         try{
@@ -55,7 +75,7 @@ export default function Book()
                     <strong>{userName}</strong>
                 </span>
                 <Link className="button" to ="book/new">Add new Book</Link>
-                <button type="button">
+                <button type="button" onClick={logout}>
                     <FiPower size={18} color = "#251fc5"/>
                 </button>
             </header>

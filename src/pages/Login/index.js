@@ -7,6 +7,7 @@ import './styles.css'
 
 import '../../global.css';
 import padlockImage from '../../assets/padlock.png'
+import { useEffect } from "react/cjs/react.development";
 
 export default function Login(){
 
