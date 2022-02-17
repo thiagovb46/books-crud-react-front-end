@@ -17,17 +17,34 @@ export default function Book()
 
     const history = useHistory();
 
+
     useEffect(()=>{
         api.get('api/book/v1', {
             headers:{
                 Authorization: `Bearer ${acessToken}`
             }
         }).then(response => { 
-            console.log(response.data)
+            
             setBooks(response.data);
-            console.log(books)
+           
         });
     }, [acessToken])
+
+    async function deleteBook(id){
+        try{
+            await api.delete(`api/book/v1/${id}`,{
+                headers:{
+                    Authorization: `Bearer ${acessToken}`
+                }
+            });
+
+            setBooks(books.filter(book=>book.id!=id));
+        }
+        catch(error){
+            alert("Error while deleting Book");
+
+        }
+    }
     
 
     return ( 
@@ -51,16 +68,16 @@ export default function Book()
                         <strong>Author: </strong>
                         <p>{book.author}</p>
                         <strong>Price: </strong>
-                        <p>R${book.price}</p>
+                        <p>{Intl.NumberFormat('pt-br', {style:'currency', currency:'BRL'}).format(book.price)}</p>
                         <strong>Release Date: </strong>
-                        <p>27/10/2018</p>
+                        <p>{book.launchDate}</p>
 
                         <button type = "button">
                             <FiEdit  size={20} color ="#251fc5"/>
 
                         </button>
 
-                        <button type = "button">
+                        <button onClick={()=> deleteBook(book.id)} type = "button">
                         <FiTrash2 size={20} color ="#251fc5"/>
                         </button>
 

@@ -32,7 +32,7 @@ export default function NewBook(){
         try{
             await api.post("/api/book/v1",data, {
                 headers:{
-                    Authorization: `Bearer${acessToken}`
+                    Authorization: `Bearer ${acessToken}`
             }
             });
             
