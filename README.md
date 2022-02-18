@@ -1,7 +1,6 @@
 # Front end books and People
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-The back end that this apllication consumes is on repository: https://github.com/thiagovb46/crud-restfull-books-people, in the readme file have the instructions to run the back-end correctly.
 
 ## Available Scripts
 
